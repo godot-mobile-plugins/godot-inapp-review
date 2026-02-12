@@ -6,7 +6,6 @@ import Foundation
 import StoreKit
 import OSLog
 
-@available(iOS 16.0, *)
 @objcMembers public class InappReview : NSObject
 {
 
