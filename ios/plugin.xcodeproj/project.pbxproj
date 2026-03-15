@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		07C222B82F34ADA800A03D0D /* inapp_review_plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07C222B22F34ADA800A03D0D /* inapp_review_plugin.mm */; };
 		07C222B92F34ADA800A03D0D /* inapp_review_plugin_bootstrap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07C222B42F34ADA800A03D0D /* inapp_review_plugin_bootstrap.mm */; };
 		07C222BA2F34ADA800A03D0D /* InappReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C222B62F34ADA800A03D0D /* InappReview.swift */; };
-		94A1B0B2910D06DA0F4D3D3C /* Pods_inapp_review_plugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 380C444E6383B0C8ACA7CA7D /* Pods_inapp_review_plugin.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,10 +31,7 @@
 		07C222B42F34ADA800A03D0D /* inapp_review_plugin_bootstrap.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = inapp_review_plugin_bootstrap.mm; sourceTree = "<group>"; };
 		07C222B52F34ADA800A03D0D /* inapp_review_plugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "inapp_review_plugin-Bridging-Header.h"; sourceTree = "<group>"; };
 		07C222B62F34ADA800A03D0D /* InappReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InappReview.swift; sourceTree = "<group>"; };
-		380C444E6383B0C8ACA7CA7D /* Pods_inapp_review_plugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_inapp_review_plugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90CAAA9424E71FF10013969F /* libinapp_review_plugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libinapp_review_plugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAE936A0178A8EA9BB753CEA /* Pods-inapp_review_plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inapp_review_plugin.debug.xcconfig"; path = "Target Support Files/Pods-inapp_review_plugin/Pods-inapp_review_plugin.debug.xcconfig"; sourceTree = "<group>"; };
-		D5F7A9D28867FD798F31BF3B /* Pods-inapp_review_plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inapp_review_plugin.release.xcconfig"; path = "Target Support Files/Pods-inapp_review_plugin/Pods-inapp_review_plugin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94A1B0B2910D06DA0F4D3D3C /* Pods_inapp_review_plugin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,22 +58,12 @@
 			path = src;
 			sourceTree = "<group>";
 		};
-		66EA7AD27171A8F93A267403 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				AAE936A0178A8EA9BB753CEA /* Pods-inapp_review_plugin.debug.xcconfig */,
-				D5F7A9D28867FD798F31BF3B /* Pods-inapp_review_plugin.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		90CAAA8B24E71FF10013969F = {
 			isa = PBXGroup;
 			children = (
 				07C222B72F34ADA800A03D0D /* src */,
 				90CAAA9524E71FF10013969F /* Products */,
 				90CAAAA824E72A8A0013969F /* Frameworks */,
-				66EA7AD27171A8F93A267403 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,7 +78,6 @@
 		90CAAAA824E72A8A0013969F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				380C444E6383B0C8ACA7CA7D /* Pods_inapp_review_plugin.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -105,7 +89,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90CAAA9D24E71FF10013969F /* Build configuration list for PBXNativeTarget "inapp_review_plugin" */;
 			buildPhases = (
-				DD9BF3CC2255FDE9321FE7D1 /* [CP] Check Pods Manifest.lock */,
 				90CAAA9024E71FF10013969F /* Sources */,
 				90CAAA9124E71FF10013969F /* Frameworks */,
 				90CAAA9224E71FF10013969F /* CopyFiles */,
@@ -115,7 +98,7 @@
 			dependencies = (
 			);
 			name = inapp_review_plugin;
-			productName = godot_plugin;
+			productName = inapp_review_plugin;
 			productReference = 90CAAA9424E71FF10013969F /* libinapp_review_plugin.a */;
 			productType = "com.apple.product-type.library.static";
 		};
@@ -134,7 +117,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 90CAAA8F24E71FF10013969F /* Build configuration list for PBXProject "inapp_review_plugin" */;
+			buildConfigurationList = 90CAAA8F24E71FF10013969F /* Build configuration list for PBXProject "plugin" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -151,31 +134,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		DD9BF3CC2255FDE9321FE7D1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-inapp_review_plugin-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		90CAAA9024E71FF10013969F /* Sources */ = {
@@ -303,12 +261,11 @@
 		};
 		90CAAA9E24E71FF10013969F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAE936A0178A8EA9BB753CEA /* Pods-inapp_review_plugin.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				GODOT_DIR = "$(SRCROOT)/godot";
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,7 +273,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/godot/bin",
+					"$(GODOT_DIR)/bin",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
@@ -361,15 +318,13 @@
 					"-DCOREAUDIO_ENABLED",
 					"-DAPPLE_EMBEDDED_ENABLED",
 					"-isystem",
-					"$(SRCROOT)/godot",
+					"$(GODOT_DIR)",
 					"-isystem",
-					"$(SRCROOT)/godot/drivers/apple_embedded",
+					"$(GODOT_DIR)/drivers/apple_embedded",
 					"-isystem",
-					"$(SRCROOT)/godot/platform/ios",
+					"$(GODOT_DIR)/platform/ios",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "src/inapp_review_plugin-Bridging-Header.h";
@@ -381,12 +336,11 @@
 		};
 		90CAAA9F24E71FF10013969F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D5F7A9D28867FD798F31BF3B /* Pods-inapp_review_plugin.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				GODOT_DIR = "$(SRCROOT)/godot";
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -394,7 +348,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/godot/bin",
+					"$(GODOT_DIR)/bin",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
@@ -430,15 +384,13 @@
 					"-DCOREAUDIO_ENABLED",
 					"-DAPPLE_EMBEDDED_ENABLED",
 					"-isystem",
-					"$(SRCROOT)/godot",
+					"$(GODOT_DIR)",
 					"-isystem",
-					"$(SRCROOT)/godot/drivers/apple_embedded",
+					"$(GODOT_DIR)/drivers/apple_embedded",
 					"-isystem",
-					"$(SRCROOT)/godot/platform/ios",
+					"$(GODOT_DIR)/platform/ios",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "src/inapp_review_plugin-Bridging-Header.h";

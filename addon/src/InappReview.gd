@@ -8,19 +8,19 @@ class_name InappReview extends Node
 
 const PLUGIN_SINGLETON_NAME: String = "@pluginName@"
 
-signal review_info_generated()
-signal review_info_generation_failed()
-signal review_flow_launched()
-signal review_flow_launch_failed()
+signal review_info_generated
+signal review_info_generation_failed
+signal review_flow_launched
+signal review_flow_launch_failed
 signal app_review_url_ready(url: String)
-signal get_app_review_url_failed()
+signal get_app_review_url_failed
 
-const SIGNAL_NAME_REVIEW_INFO_GENERATED: String = "review_info_generated";
-const SIGNAL_NAME_REVIEW_INFO_GENERATION_FAILED: String = "review_info_generation_failed";
-const SIGNAL_NAME_REVIEW_FLOW_LAUNCHED: String = "review_flow_launched";
-const SIGNAL_NAME_REVIEW_FLOW_LAUNCH_FAILED: String = "review_flow_launch_failed";
-const SIGNAL_NAME_APP_REVIEW_URL_READY: String = "app_review_url_ready";
-const SIGNAL_NAME_GET_APP_REVIEW_URL_FAILED: String = "get_app_review_url_failed";
+const SIGNAL_NAME_REVIEW_INFO_GENERATED: String = "review_info_generated"
+const SIGNAL_NAME_REVIEW_INFO_GENERATION_FAILED: String = "review_info_generation_failed"
+const SIGNAL_NAME_REVIEW_FLOW_LAUNCHED: String = "review_flow_launched"
+const SIGNAL_NAME_REVIEW_FLOW_LAUNCH_FAILED: String = "review_flow_launch_failed"
+const SIGNAL_NAME_APP_REVIEW_URL_READY: String = "app_review_url_ready"
+const SIGNAL_NAME_GET_APP_REVIEW_URL_FAILED: String = "get_app_review_url_failed"
 
 var _plugin_singleton: Object
 

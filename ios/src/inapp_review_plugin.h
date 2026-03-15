@@ -3,14 +3,13 @@
 //
 #pragma once
 
-#include "core/object/object.h"
 #include "core/object/class_db.h"
+#include "core/object/object.h"
 
 extern String const REVIEW_INFO_GENERATED_SIGNAL;
 extern String const REVIEW_INFO_GENERATION_FAILED_SIGNAL;
 extern String const REVIEW_FLOW_LAUNCHED_SIGNAL;
 extern String const REVIEW_FLOW_LAUNCH_FAILED_SIGNAL;
-
 
 class InappReviewPlugin : public Object {
 	GDCLASS(InappReviewPlugin, Object);

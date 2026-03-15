@@ -42,7 +42,7 @@ import OSLog
 
 	func fetchAppStoreID(completion: @escaping (String?) -> Void) {
 		Self.logger.debug("Starting fetchAppStoreID process.")
-		
+
 		// Get the local Bundle ID
 		guard let bundleId = Bundle.main.bundleIdentifier,
 			let encodedBundleId = bundleId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
@@ -65,14 +65,14 @@ import OSLog
 
 		// Perform the network request
 		URLSession.shared.dataTask(with: lookupURL) { data, response, error in
-			
+
 			// Check for network errors
 			if let error = error {
 				Self.logger.error("Network request failed: \(error.localizedDescription, privacy: .public)")
 				completion(nil)
 				return
 			}
-			
+
 			// Check for data presence
 			guard let data = data else {
 				Self.logger.error("Network request returned no data and no error.")
@@ -114,7 +114,7 @@ import OSLog
 		fetchAppStoreID { storeId in
 			guard let storeId = storeId,
 				let url = URL(string: "https://apps.apple.com/app/id\(storeId)?action=write-review") else {
-				
+
 				Self.logger.error("Failed to get App Store ID or construct review URL.")
 				completion(nil)
 				return
