@@ -61,8 +61,7 @@ public class InappReviewPlugin extends GodotPlugin {
 				emitSignal(SIGNAL_NAME_REVIEW_INFO_GENERATED);
 			});
 			request.addOnFailureListener(task -> emitSignal(SIGNAL_NAME_REVIEW_INFO_GENERATION_FAILED));
-		}
-		catch (java.lang.NoClassDefFoundError error) {
+		} catch (java.lang.NoClassDefFoundError error) {
 			StringWriter sw = new StringWriter();
 			error.printStackTrace(new PrintWriter(sw));
 			Log.e(LOG_TAG, String.format("%s():: unable to generate review flow due to %s",
@@ -83,11 +82,11 @@ public class InappReviewPlugin extends GodotPlugin {
 				flow.addOnFailureListener(task -> emitSignal(SIGNAL_NAME_REVIEW_FLOW_LAUNCH_FAILED));
 			} else {
 				emitSignal(SIGNAL_NAME_REVIEW_FLOW_LAUNCH_FAILED);
-				Log.e(LOG_TAG, String.format("%s():: unable to launch review flow because ReviewInfo has not been generated",
+				Log.e(LOG_TAG, String.format(
+						"%s():: unable to launch review flow because ReviewInfo has not been generated",
 						"launch_review_flow"));
 			}
-		}
-		catch (java.lang.NoClassDefFoundError error) {
+		} catch (java.lang.NoClassDefFoundError error) {
 			StringWriter sw = new StringWriter();
 			error.printStackTrace(new PrintWriter(sw));
 			Log.e(LOG_TAG, String.format("%s():: unable to launch review flow due to %s",
@@ -99,7 +98,8 @@ public class InappReviewPlugin extends GodotPlugin {
 	public void get_app_review_url() {
 		try {
 			String packageName = activity.getApplicationContext().getPackageName();
-			emitSignal(SIGNAL_NAME_APP_REVIEW_URL_READY, "https://play.google.com/store/apps/details?id=" + packageName);
+			emitSignal(SIGNAL_NAME_APP_REVIEW_URL_READY, "https://play.google.com/store/apps/details?id="
+					+ packageName);
 		} catch (Exception e) {
 			Log.e(LOG_TAG, "get_app_review_url() failed due to " + e.getMessage());
 			emitSignal(SIGNAL_NAME_GET_APP_REVIEW_URL_FAILED);
