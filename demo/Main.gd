@@ -6,9 +6,8 @@ extends Node
 
 @onready var inapp_review: InappReview = $InappReview as InappReview
 @onready var _label: RichTextLabel = $CanvasLayer/CenterContainer/VBoxContainer/RichTextLabel as RichTextLabel
-@onready var _android_texture_rect: TextureRect = $CanvasLayer/CenterContainer/VBoxContainer/HBoxContainer/AndroidTextureRect as TextureRect
-@onready var _ios_texture_rect: TextureRect = $CanvasLayer/CenterContainer/VBoxContainer/HBoxContainer/iOSTextureRect as TextureRect
-
+@onready var _android_texture_rect := %AndroidTextureRect as TextureRect
+@onready var _ios_texture_rect := %iOSTextureRect as TextureRect
 
 var _active_texture_rect: TextureRect
 

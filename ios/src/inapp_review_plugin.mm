@@ -6,9 +6,8 @@
 
 #include "core/config/project_settings.h"
 
-#import "inapp_review_plugin.h"
 #import "inapp_review_plugin-Swift.h"
-
+#import "inapp_review_plugin.h"
 
 String const REVIEW_INFO_GENERATED_SIGNAL = "review_info_generated";
 String const REVIEW_INFO_GENERATION_FAILED_SIGNAL = "review_info_generation_failed";
@@ -18,7 +17,6 @@ String const APP_REVIEW_URL_READY_SIGNAL = "app_review_url_ready";
 String const GET_APP_REVIEW_URL_FAILED_SIGNAL = "get_app_review_url_failed";
 
 static NSString *const kLogTag = @"InappReviewPlugin::";
-
 
 void InappReviewPlugin::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("generate_review_info"), &InappReviewPlugin::generate_review_info);
@@ -53,14 +51,11 @@ void InappReviewPlugin::get_app_review_url() {
 	InappReviewPlugin *plugin_instance = this;
 
 	InappReview *swiftInstance = [[InappReview alloc] init];
-	[swiftInstance getAppReviewUrlWithCompletion:^(NSURL * _Nullable url) {
+	[swiftInstance getAppReviewUrlWithCompletion:^(NSURL *_Nullable url) {
 		if (url) {
 			NSLog(@"%@ App review URL successfully constructed: %@", kLogTag, url);
 			plugin_instance->call_deferred(
-				"emit_signal",
-				REVIEW_INFO_GENERATED_SIGNAL,
-				String(url.absoluteString.UTF8String)
-			);
+					"emit_signal", REVIEW_INFO_GENERATED_SIGNAL, String(url.absoluteString.UTF8String));
 		} else {
 			NSLog(@"%@ Error: Failed to construct app review URL", kLogTag);
 			plugin_instance->call_deferred("emit_signal", GET_APP_REVIEW_URL_FAILED_SIGNAL);
