@@ -6,10 +6,44 @@ import Foundation
 import StoreKit
 import OSLog
 
-@objcMembers public class InappReview : NSObject
-{
+// MARK: - URLSessionProtocol
+
+/// Abstraction over URLSession so tests can inject a mock session without
+/// touching production code paths.  URLSession conforms to this protocol
+/// out of the box — no extension needed in app code.
+protocol URLSessionProtocol {
+	func dataTask(
+		with url: URLRequest,
+		completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void
+	) -> URLSessionDataTask
+}
+
+extension URLSession: URLSessionProtocol {}
+
+// MARK: - InappReview
+
+@objcMembers public class InappReview: NSObject {
 
 	private static let logger = Logger(subsystem: "org.godotengine.plugin", category: "InappReview")
+
+	// Injected at init time; defaults to URLSession.shared in production.
+	private let session: URLSessionProtocol
+
+	// MARK: - Initializers
+
+	/// Production initialiser — called by the ObjC bridge via [[InappReview alloc] init].
+	public override init() {
+		self.session = URLSession.shared
+		super.init()
+	}
+
+	/// Testable initialiser — pass a custom URLSession (backed by MockURLProtocol) in unit tests.
+	init(session: URLSessionProtocol) {
+		self.session = session
+		super.init()
+	}
+
+	// MARK: - Review request (static — no network I/O)
 
 	static func requestReview() {
 		logger.debug("Attempting to request in-app review.")
@@ -40,12 +74,14 @@ import OSLog
 		}
 	}
 
+	// MARK: - App Store ID lookup
+
 	func fetchAppStoreID(completion: @escaping (String?) -> Void) {
 		Self.logger.debug("Starting fetchAppStoreID process.")
 
 		// Get the local Bundle ID
 		guard let bundleId = Bundle.main.bundleIdentifier,
-			let encodedBundleId = bundleId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+				let encodedBundleId = bundleId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
 			Self.logger.error("Failed to get or encode bundle identifier.")
 			completion(nil)
 			return
@@ -63,17 +99,16 @@ import OSLog
 
 		Self.logger.debug("Lookup URL: \(lookupURL.absoluteString, privacy: .public)")
 
-		// Perform the network request
-		URLSession.shared.dataTask(with: lookupURL) { data, response, error in
+		// Perform the network request via the injected session
+		let request = URLRequest(url: lookupURL)
+		session.dataTask(with: request) { data, _, error in
 
-			// Check for network errors
 			if let error = error {
 				Self.logger.error("Network request failed: \(error.localizedDescription, privacy: .public)")
 				completion(nil)
 				return
 			}
 
-			// Check for data presence
 			guard let data = data else {
 				Self.logger.error("Network request returned no data and no error.")
 				completion(nil)
@@ -81,14 +116,12 @@ import OSLog
 			}
 
 			do {
-				// Parse the JSON response
 				if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-				let results = json["results"] as? [[String: Any]],
-				let firstResult = results.first,
-				let trackId = firstResult["trackId"] as? Int {
+					let results = json["results"] as? [[String: Any]],
+					let firstResult = results.first,
+					let trackId = firstResult["trackId"] as? Int {
 
-					let storeId = String(trackId) // The trackId is the App Store ID
-
+					let storeId = String(trackId)
 					Self.logger.info("Successfully fetched App Store ID: \(storeId, privacy: .public)")
 					completion(storeId)
 				} else {
@@ -102,18 +135,20 @@ import OSLog
 		}.resume()
 	}
 
+	// MARK: - Review URL construction
+
 	/**
-	* Asynchronously fetches the application's Store ID and constructs the URL
-	* that directs the user directly to the 'Write a Review' page in the App Store.
-	*
-	* @param completion A closure that receives the constructed review URL or nil on failure.
-	*/
+	 * Asynchronously fetches the application's Store ID and constructs the URL
+	 * that directs the user directly to the 'Write a Review' page in the App Store.
+	 *
+	 * @param completion A closure that receives the constructed review URL or nil on failure.
+	 */
 	func getAppReviewUrl(completion: @escaping (URL?) -> Void) {
 		Self.logger.debug("Starting getAppReviewUrl process.")
 
 		fetchAppStoreID { storeId in
 			guard let storeId = storeId,
-				let url = URL(string: "https://apps.apple.com/app/id\(storeId)?action=write-review") else {
+					let url = URL(string: "https://apps.apple.com/app/id\(storeId)?action=write-review") else {
 
 				Self.logger.error("Failed to get App Store ID or construct review URL.")
 				completion(nil)
