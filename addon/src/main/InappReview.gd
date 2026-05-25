@@ -40,7 +40,7 @@ func _update_plugin() -> void:
 			_plugin_singleton = Engine.get_singleton(PLUGIN_SINGLETON_NAME)
 			_connect_signals()
 		elif not OS.has_feature("editor_hint"):
-			log_error("%s singleton not found!" % PLUGIN_SINGLETON_NAME)
+			GmpLogger.log_error("%s singleton not found!" % PLUGIN_SINGLETON_NAME)
 
 
 func _connect_signals() -> void:
@@ -56,21 +56,21 @@ func generate_review_info() -> void:
 	if _plugin_singleton != null:
 		_plugin_singleton.generate_review_info()
 	else:
-		log_error("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)
+		GmpLogger.log_error("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)
 
 
 func launch_review_flow() -> void:
 	if _plugin_singleton != null:
 		_plugin_singleton.launch_review_flow()
 	else:
-		log_error("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)
+		GmpLogger.log_error("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)
 
 
 func get_app_review_url() -> void:
 	if _plugin_singleton != null:
 		_plugin_singleton.get_app_review_url()
 	else:
-		log_error("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)
+		GmpLogger.log_error("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)
 
 
 func _on_review_info_generated() -> void:
@@ -95,11 +95,3 @@ func _on_app_review_url_ready(a_url: String) -> void:
 
 func _on_get_app_review_url_failed() -> void:
 	emit_signal(SIGNAL_NAME_GET_APP_REVIEW_URL_FAILED)
-
-
-static func log_error(a_description: String) -> void:
-	push_error(a_description)
-
-
-static func log_info(a_description: String) -> void:
-	print_rich("[color=cyan]INFO: %s[/color]" % a_description)
